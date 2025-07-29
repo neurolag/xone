@@ -207,7 +207,7 @@ static int gip_gamepad_init_input(struct gip_gamepad *gamepad)
 	return 0;
 
 err_delete_timer:
-	del_timer_sync(&gamepad->rumble.timer);
+	timer_delete_sync(&gamepad->rumble.timer);
 
 	return err;
 }
@@ -335,7 +335,7 @@ static void gip_gamepad_remove(struct gip_client *client)
 {
 	struct gip_gamepad *gamepad = dev_get_drvdata(&client->dev);
 
-	del_timer_sync(&gamepad->rumble.timer);
+	timer_delete_sync(&gamepad->rumble.timer);
 }
 
 static struct gip_driver gip_gamepad_driver = {
